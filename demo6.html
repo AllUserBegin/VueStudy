@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>Vue计算属性</title>
+</head>
+
+<body>
+    <div id="app">
+        {{msg2}}
+        {{add()}}
+    </div>
+    <script> 
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                msg: "hello world dear"
+            },
+            computed:{
+                msg2: function()
+                {
+                    return this.msg.split(" ").reverse().join("-")
+                }
+            },
+            methods:{
+                add()
+                {
+                    return this.msg.split(" ").reverse().join("-")
+                }
+            }            
+        });
+    </script>
+</body>
+
+</html>

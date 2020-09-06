@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <script src="js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <Ruanmou></Ruanmou>
+            <hello></hello>
+        </div>
+        <template id="d1">
+            <div>
+           <h1> 软件教育欢迎你</h1>
+           <h2>此处只能有一个根节点 </h2>
+        </div>
+        </template>
+        <script>
+            Vue.component("ruanmou",
+            {
+                template:"#d1"
+            });
+            var vm=new Vue({
+               el:"#app",
+               components:{
+                   "hello":
+                   {
+                       template:"<h1>我是局部组件</h1>"
+                   }
+               }
+               
+            });
+        </script>
+    </body>
+
+</html>

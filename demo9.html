@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>Watch 事件监听</title>
+</head>
+
+<body>
+    <div id="app">
+     <input type="text" v-model="name"></input>
+     <input type="text" v-model="user.id"></input>
+    </div>
+    <script> 
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                name: "hello world dear",
+                user:{
+                    id:001
+                }
+            },           
+            watch: {
+                name:function(newValue,oldValue)
+                {
+                   console.log("修改之前的数据"+oldValue,"修改之后的数据"+newValue);
+                },
+                // "user.id":function(newValue,oldValue) {
+                //     console.log("修改之前的数据"+oldValue,"修改之后的数据"+newValue);
+                // }
+                user:
+                {
+                   handler:function(newValue,oldValue)
+                    {
+                        console.log("修改之前的数据"+oldValue.id,"修改之后的数据"+newValue.id);
+                    },
+                    deep:true
+                }
+            },           
+        });  
+    </script>
+</body>
+
+</html>

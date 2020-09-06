@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <title>vue-router ---子路由</title>
+</head>
+
+<body>
+    <div id="app">
+      <router-link to="/home">主页</router-link>
+      <router-link to="/user">用户页面</router-link>
+      <div>
+      <router-view></router-view>
+    </div>
+    </div>
+    <template id="user">
+        <div>
+        <h3>用户信息</h3>
+        <div>
+            <router-link to="/user/login?name=tom&id=123">用户登陆</router-link>
+            <router-link to="/user/reg/tom/1234">用户注册</router-link>
+        </div>
+        <div>
+            <router-view></router-view>
+        </div>
+    </div>
+    </template>
+    <script>
+   var home={
+        template: "<h1>我是主页</h1>"
+   }
+   var user={
+    template: "#user"
+   }
+   var login={
+       template:"<div><h1>用户登录</h1> {{$route.query.name}} {{$route.query.id}}</div>"
+   }
+   var reg={
+       template:"<div><h1>用户注册</h1> {{$route.params.name}} {{$route.params.id}}</div>"
+   }
+   var routes=[
+   {path: "/home",component: home },
+        {path: "/user",component: user,
+         children:[
+             
+                 // 不需要加/
+                 {path: "login",component:login},
+                 {path: "reg/:name/:id",component:reg}
+             
+         ]    
+    }
+   ]
+   var router=new  VueRouter({
+        routes      
+    });
+     var vm = new Vue({
+            el: "#app",
+            router: router
+      })  
+    </script>
+</body>
+
+</html>

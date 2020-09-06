@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>非父子组件_兄弟组件的信息传递</title>
+</head>
+
+<body>
+    <div id="app">
+        <component1></component1>
+        <component2></component2>
+    </div>
+    <template id="t1" >
+        <div>我是component1 {{attr2}}</div>
+    </template>
+    <template id="t2">
+        <div>我是component2
+           <button @click="send">将component2的数据传输给component1</button>
+        </div>
+    </template>
+    <script>
+        var event = new Vue({});
+        var vm = new Vue({
+            el: "#app",
+            components: {
+                "component1": {
+                    template: "#t1",
+                    data() {
+                        return {
+                            attr1: "我是component1的数据",
+                            attr2: ""                           
+                        }
+                    },
+                    mounted()
+                    {
+                        //接收数据
+                        event.$on("e-world",myattr=>
+                        {
+                            this.attr2=myattr
+                        })
+                    }
+                },
+                "component2": {
+                    template: "#t2",
+                    data() {
+                        return {
+                            attr2: "我是component2的数据"                           
+                        }
+                    },
+                    methods:
+                    {
+                        send()
+                        {
+                            //发送数据
+                            event.$emit("e-world",this.attr2);                          
+                        }
+                    }
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

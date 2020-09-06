@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>常用的属性与方法</title>
+</head>
+
+<body>
+    <div id="app">
+        <div ref="title">{{message}}</div>             
+    </div>
+    <script> 
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                message: "hello world dear"
+            }
+        });  
+
+        //vm.$destro();
+        //简易手动挂载写法
+        // var vm=new Vue(
+        //     {
+
+        //     }).$mount("#app");
+     vm.message="tom";
+     //等DOM更新完毕再操作
+     vm.$nextTick(function()
+     {
+        console.log(vm.$refs.title.textContent);
+     });
+     
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>自定义指令</title>
+</head>
+
+<body>
+    <div id="app">   
+        <input type="text" v-model="msg"/>
+        <div v-ruanmou>{{msg}}</div>    
+    </div>
+    <script>
+     
+        // Vue.directive("ruanmou",{
+        //     bind(el,binding)
+        //     {
+        //         el.style.color="#f00";
+        //         console.log(binding);
+        //     },
+        //     inserted()
+        //     {
+        //         console.log("被绑定自定义指令的元素插入到其他父节点的时候调用");
+        //     },
+        //     update()
+        //     {
+        //         console.log("被绑定自定义指令的元素里面的值更新的时候调用")
+        //     },
+        //     unbind()
+        //     {
+
+        //     }
+        // })
+        
+        //简写方式  表示调用了bind 和 update
+        Vue.directive("ruanmou",function(el,binding)
+        {
+            el.style.color="#f00";
+            console.log("被绑定自定义指令的元素里面的值更新的时候调用");
+            console.log(binding);
+        });
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                msg:"hello world"
+            }            
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <title>常用的属性与方法</title>
+</head>
+
+<body>
+    <div id="app">
+           红色
+        <h1 title="dddd" ref="reference"></h1>
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <script> 
+        var vm = new Vue({
+            el: "#app",
+            data:{
+                msg: "hello world dear"
+            },           
+            methods:{
+                add()
+                {
+                    consol.log("aa");
+                }
+            }            
+        });
+        // vm.$data.msg
+        // vm.msg
+        // vm.$options.add()
+        // vm.add()
+        vm.$el.style.color="#f00";
+        vm.$refs.title
+
+    </script>
+</body>
+
+</html>

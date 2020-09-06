@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <title>vue-router开篇</title>
+</head>
+
+<body>
+    <div id="app">
+       <router-link to="/home">主页</router-link>
+       <router-link to="/news">新闻</router-link>
+       <div>
+           <router-view></router-view>
+       </div>
+    </div>
+    <script>
+    //定义组件
+    var home={
+        template:"<h1>我是主页</h1>"
+    }
+    var news={
+        template:"<h2>我是新闻页</h2>"
+    }
+    //配置路由
+    var routes=[
+        {path: "/home",component: home },
+        {path: "/news",component: news },
+        //默认页
+        {path: "/",redirect: "/home" },
+    ]
+    //实例化一个vuerouter的对象
+    var router=new  VueRouter({
+        routes
+        //model=history
+         //如果名字一样 简写 routers
+    });
+     var vm = new Vue({
+            el: "#app",
+            router          
+      })  
+    </script>
+</body>
+
+</html>
